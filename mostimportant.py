@@ -20,11 +20,11 @@ from goose import Goose
 config = ConfigParser.ConfigParser()
 config.read('influence.conf')
 
-pyechonest.config.ECHO_NEST_API_KEY = config.get('ECHO_NEST_API_KEY') 
+pyechonest.config.ECHO_NEST_API_KEY = config.get('main','ECHO_NEST_API_KEY') 
 
-client = MongoClient(config.get('MONGO_CONN_STRING'))
+client = MongoClient(config.get('main', 'MONGO_CONN_STRING'))
 
-auth = client.influence.authenticate(config.get('MONGO_USER'), config.get('MONGO_PASSWD'))
+auth = client.influence.authenticate(config.get('main', 'MONGO_USER'), config.get('main', 'MONGO_PASSWD'))
 
 db = client.influence
 
@@ -93,7 +93,7 @@ def get_mg_api(params):
 
 		#OLD API KEY 
 		#api_param = {'api_key': '62c183d2b4a900aac93f2a17f134bba7', 'limit': 100}
-		api_param = {'api_key': config.get('MUSICGRAPH_API_KEY'), 'limit': 100}
+		api_param = {'api_key': config.get('main', 'MUSICGRAPH_API_KEY'), 'limit': 100}
 
 		if 'id' in params:
 			url = 'http://api.musicgraph.com/api/v2/artist/'+params['id']
