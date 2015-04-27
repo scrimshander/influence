@@ -7,8 +7,7 @@ import ConfigParser
 
 from pymongo import MongoClient, errors as pymongoerrors
 
-
-from pyechonest import config
+import pyechonest
 from pyechonest import artist as echonest_artist
 from pyechonest.util import EchoNestAPIError
 
